@@ -1,0 +1,11 @@
+use crate::{Hosts, Record};
+
+grammar;
+
+pub Hosts: Hosts =  {
+    <lines:Line*> => Hosts::new(lines.into_iter().flatten().collect()),
+};
+
+Line: Option<Record> = {
+  r"#.*" => None
+};
