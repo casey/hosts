@@ -8,6 +8,10 @@ pub(crate) enum Error {
     path: PathBuf,
   },
   ConfigParse {
+    source: yaml_rust::ScanError,
+    path: PathBuf,
+  },
+  ConfigDeserialize {
     source: serde_yaml::Error,
     path: PathBuf,
   },

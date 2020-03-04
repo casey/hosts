@@ -1,18 +1,17 @@
 pub(crate) use std::{
-  collections::BTreeMap,
+  collections::{BTreeMap, BTreeSet},
   fmt::{self, Display, Formatter},
   fs, io,
-  path::PathBuf,
-  str::FromStr,
+  path::{Path, PathBuf},
 };
 
 pub(crate) use crate::error;
-pub(crate) use lalrpop_util::lalrpop_mod;
 pub(crate) use serde::Deserialize;
-pub(crate) use serde_with::rust::display_fromstr;
+pub(crate) use serde_with::rust::unwrap_or_skip;
 pub(crate) use snafu::{ResultExt, Snafu};
 pub(crate) use structopt::StructOpt;
+pub(crate) use yaml_rust::YamlLoader;
 
-pub(crate) use crate::{
-  config::Config, error::Error, hosts::Hosts, opt::Opt, profile::Profile, record::Record,
-};
+pub(crate) use crate::{config::Config, error::Error, opt::Opt, profile::Profile, record::Record};
+
+pub(crate) type Result<T, E = Error> = std::result::Result<T, E>;

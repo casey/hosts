@@ -1,21 +1,18 @@
 use crate::common::*;
 
+#[derive(Clone, Deserialize, Debug, PartialEq)]
 pub(crate) struct Record {
   address: String,      // TODO: switch to Ipv4/ipv6 address
-  host: String,         // TODO: Switch to domain
-  aliases: Vec<String>, // todo: switch to structured
+  domain: String,       // TODO: Switch to structured host
+  aliases: Vec<String>, // TODO: switch to structured
 }
 
-impl Display for Record {
-  fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-    write!(f, "{}\t{}", self.address, self.host)?;
+impl Record {
+  pub(crate) fn address(&self) -> &str {
+    &self.address
+  }
 
-    for alias in &self.aliases {
-      write!(f, " {}", alias)?;
-    }
-
-    writeln!(f)?;
-
-    Ok(())
+  pub(crate) fn aliases(&self) -> &[String] {
+    &self.aliases
   }
 }
